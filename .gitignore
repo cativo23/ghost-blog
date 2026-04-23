@@ -24,6 +24,10 @@ Thumbs.db
 # Migration output
 ghost-import.json
 
+# Migration scripts with API keys
+migration/assign_tags.py
+migration/create_about_page.py
+
 # Python
 __pycache__/
 *.pyc
