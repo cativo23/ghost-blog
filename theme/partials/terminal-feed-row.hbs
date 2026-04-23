@@ -1,0 +1,13 @@
+<a href="{{url}}" class="feed-row">
+    <span class="feed-col feed-col--date mono">{{date format="MMM DD"}}</span>
+    <span class="feed-col feed-col--title">
+        <span class="feed-title">{{title}}</span>
+        <span class="feed-slug mono text-muted">~/posts/{{slug}}.md</span>
+    </span>
+    <span class="feed-col feed-col--tags">
+        {{#foreach tags limit="2"}}
+        <span class="tag-pill">{{name}}</span>
+        {{/foreach}}
+    </span>
+    <span class="feed-col feed-col--time mono text-muted">{{reading_time}} min</span>
+</a>

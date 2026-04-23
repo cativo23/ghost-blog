@@ -1,0 +1,21 @@
+{{#if pagination.pages}}
+{{#if (or pagination.prev pagination.next)}}
+<nav class="pagination" role="navigation" aria-label="Pagination">
+    <div class="pagination-inner mono">
+        {{#if pagination.prev}}
+        <a href="{{pagination.prev}}" class="pagination-link pagination-prev" aria-label="Previous page">&lt; prev</a>
+        {{else}}
+        <span class="pagination-link pagination-prev pagination-disabled">&lt; prev</span>
+        {{/if}}
+
+        <span class="pagination-info">page {{pagination.page}} of {{pagination.pages}}</span>
+
+        {{#if pagination.next}}
+        <a href="{{pagination.next}}" class="pagination-link pagination-next" aria-label="Next page">next &gt;</a>
+        {{else}}
+        <span class="pagination-link pagination-next pagination-disabled">next &gt;</span>
+        {{/if}}
+    </div>
+</nav>
+{{/if}}
+{{/if}}

@@ -1,4 +1,77 @@
 {{!< default}}
-<main>
-  <p>cativo-terminal theme loading...</p>
-</main>
+
+<section class="homepage">
+    {{!-- Hero Featured Post --}}
+    <section class="hero-section">
+        {{#get "posts" filter="featured:true" limit="1" include="tags,authors"}}
+            {{#foreach posts}}
+                {{> post-card}}
+            {{/foreach}}
+        {{else}}
+            {{!-- Fallback to latest post if none featured --}}
+            {{#get "posts" limit="1" include="tags,authors"}}
+                {{#foreach posts}}
+                    {{> post-card}}
+                {{/foreach}}
+            {{/get}}
+        {{/get}}
+    </section>
+
+    {{!-- Terminal Feed Section --}}
+    <div class="divider">$ ls -la --sort=date posts/</div>
+
+    <section class="terminal-feed">
+        <div class="terminal-window">
+            <div class="window-chrome">
+                <span class="window-dot window-dot--red"></span>
+                <span class="window-dot window-dot--yellow"></span>
+                <span class="window-dot window-dot--green"></span>
+                <span class="window-title">cativo@blog — posts</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-prompt-line">
+                    <span class="prompt">
+                        <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~/posts$</span>
+                    </span>
+                    <span class="mono text-muted"> ls -la --sort=date</span>
+                </div>
+                <div class="feed-header">
+                    <span class="feed-col feed-col--date">date</span>
+                    <span class="feed-col feed-col--title">title</span>
+                    <span class="feed-col feed-col--tags">tags</span>
+                    <span class="feed-col feed-col--time">time</span>
+                </div>
+                {{#foreach posts}}
+                    {{> terminal-feed-row}}
+                {{/foreach}}
+            </div>
+        </div>
+    </section>
+
+    {{!-- Stats Grid --}}
+    <section class="stats-grid">
+        {{#get "posts" limit="all"}}
+        <div class="stat-item">
+            <span class="stat-value mono">{{pagination.total}}</span>
+            <span class="stat-label text-muted">total posts</span>
+        </div>
+        {{/get}}
+        {{#get "tags" limit="all"}}
+        <div class="stat-item">
+            <span class="stat-value mono">{{pagination.total}}</span>
+            <span class="stat-label text-muted">tags</span>
+        </div>
+        {{/get}}
+        <div class="stat-item">
+            <span class="stat-value mono">~5</span>
+            <span class="stat-label text-muted">avg min read</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value mono">2026</span>
+            <span class="stat-label text-muted">since</span>
+        </div>
+    </section>
+
+    {{!-- Pagination --}}
+    {{> pagination}}
+</section>
