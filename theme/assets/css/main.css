@@ -951,3 +951,105 @@ code, pre, .mono {
 .pagination-info {
     color: var(--text-muted);
 }
+
+/* === Search Modal === */
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+}
+
+.search-modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.search-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.search-input {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    flex: 1;
+    min-width: 0;
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-results {
+    padding: 12px;
+    overflow-y: auto;
+    max-height: calc(70vh - 60px);
+}
+
+.search-result {
+    display: block;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.search-result:hover {
+    background-color: var(--hover-row-bg);
+}
+
+.search-result-line {
+    margin-bottom: 6px;
+}
+
+.search-result-path {
+    color: var(--accent-blue);
+}
+
+.search-result-match {
+    color: var(--text-primary);
+}
+
+.search-result-excerpt {
+    font-size: 13px;
+    line-height: 1.5;
+    padding-left: 12px;
+}
+
+.search-loading,
+.search-no-results,
+.search-error {
+    padding: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .search-modal-content {
+        width: 95%;
+        max-height: 80vh;
+    }
+}
