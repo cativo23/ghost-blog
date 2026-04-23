@@ -1,0 +1,43 @@
+name: ghost-blog-dev
+services:
+  ghost:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    ports:
+      - "2368:2368"
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ${DB_PASSWORD}
+      database__connection__database: ghost
+      url: http://localhost:2368
+      NODE_ENV: development
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+      - ./theme:/var/lib/ghost/content/themes/cativo-terminal
+    depends_on:
+      db:
+        condition: service_started
+    networks:
+      - ghost-internal
+
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - ghost-internal
+
+volumes:
+  ghost-content:
+  db-data:
+
+networks:
+  ghost-internal:
