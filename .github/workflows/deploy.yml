@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,28 +32,15 @@ jobs:
           path: cativo-terminal.zip
 
   deploy:
-    name: Deploy to Server
+    name: Deploy to Production
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ github.event.release.prerelease && 'dev' || 'prod' }}
+    environment: prod
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: theme
-
-      - name: Set deployment target
-        id: target
-        env:
-          IS_PRERELEASE: ${{ github.event.release.prerelease }}
-        run: |
-          if [[ "$IS_PRERELEASE" == "true" ]]; then
-            echo "path=/home/cativo23/ghost-blog-dev" >> "$GITHUB_OUTPUT"
-            echo "env=development" >> "$GITHUB_OUTPUT"
-          else
-            echo "path=/home/cativo23/ghost-blog" >> "$GITHUB_OUTPUT"
-            echo "env=production" >> "$GITHUB_OUTPUT"
-          fi
 
       - name: Copy theme to server
         uses: appleboy/scp-action@v0.1.7
@@ -62,7 +50,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "cativo-terminal.zip"
-          target: ${{ steps.target.outputs.path }}
+          target: "/home/cativo23/ghost-blog"
 
       - name: Deploy theme
         uses: appleboy/ssh-action@v1.0.3
@@ -72,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ${{ steps.target.outputs.path }}
+            cd /home/cativo23/ghost-blog
             unzip -o cativo-terminal.zip -d content/themes/cativo-terminal
             docker compose restart ghost
-            echo "Theme deployed to ${{ steps.target.outputs.env }}"
+            echo "Theme deployed to production"

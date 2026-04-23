@@ -56,7 +56,7 @@ jobs:
         id: check_tag
         env:
           TAG: ${{ steps.version.outputs.tag }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
         run: |
           if gh release view "$TAG" &>/dev/null; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
@@ -95,7 +95,7 @@ jobs:
           TAG: ${{ steps.version.outputs.tag }}
           PRERELEASE: ${{ steps.version.outputs.prerelease }}
           MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
         run: |
           FLAGS=""
           [[ "$PRERELEASE" == "true" ]] && FLAGS="--prerelease"
