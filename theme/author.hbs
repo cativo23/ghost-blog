@@ -1,10 +1,123 @@
 {{!< default}}
-<main>
-    <h1>{{primary_author.name}}</h1>
-    {{#foreach posts}}
-        <article>
-            <h2><a href="{{url}}">{{title}}</a></h2>
+
+<main class="container">
+    {{!-- Author Header --}}
+    <div class="author-header">
+        <div class="author-breadcrumb">
+            <span class="prompt">
+                <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~/authors/$</span>
+            </span>
+            <span class="mono text-muted"> cat {{author.slug}}.md</span>
+        </div>
+
+        <div class="author-profile">
+            {{#if author.profile_image}}
+            <img src="{{img_url author.profile_image size="m"}}" alt="{{author.name}}" class="author-avatar">
+            {{else}}
+            <div class="author-avatar-placeholder"></div>
+            {{/if}}
+            <div class="author-info">
+                <h1 class="author-name">{{author.name}}</h1>
+                {{#if author.bio}}
+                <p class="author-bio text-muted">{{author.bio}}</p>
+                {{/if}}
+                <div class="author-meta mono text-muted">
+                    {{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Posts Grid --}}
+    <div class="posts-grid">
+        {{#foreach posts}}
+        <article class="post-card card">
+            {{#if feature_image}}
+            <a href="{{url}}" class="post-card-image">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+            </a>
+            {{/if}}
+            <div class="post-card-content">
+                <div class="tag-pills">
+                    {{#foreach tags limit="2"}}
+                    <a href="{{url}}" class="tag-pill">#{{slug}}</a>
+                    {{/foreach}}
+                </div>
+                <h2 class="post-card-title">
+                    <a href="{{url}}">{{title}}</a>
+                </h2>
+                <p class="post-card-excerpt text-muted">{{excerpt words="20"}}</p>
+                <div class="post-card-meta">
+                    <time class="mono text-muted" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+                    <span class="text-muted">&middot;</span>
+                    <span class="mono text-muted">{{reading_time}} min read</span>
+                </div>
+            </div>
         </article>
-    {{/foreach}}
+        {{/foreach}}
+    </div>
+
+    {{!-- Pagination --}}
     {{pagination}}
 </main>
+
+<style>
+.author-header {
+    margin-bottom: 48px;
+}
+
+.author-breadcrumb {
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.author-profile {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.author-avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    flex-shrink: 0;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.author-bio {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.author-meta {
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .author-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+</style>
