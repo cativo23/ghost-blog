@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - MySQL container compatibility - switched from mysql:8 to mysql:5.7 for x86-64 baseline CPU support
 
+## [1.0.1] - 2026-04-23
+
+### Fixed
+- Deploy workflow now correctly copies `compose.prod.yml` to server
+- Deploy workflow creates `.env` file with database password from GitHub secrets
+- Deploy workflow properly executes `docker compose up -d` instead of just restarting Ghost
+
 ## [1.0.0] - 2026-04-23
 
 ### Added
