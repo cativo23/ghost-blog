@@ -9,14 +9,14 @@
     const searchTrigger = document.getElementById('search-btn');
     if (!searchTrigger) return;
 
-    // Create search modal
-    const modal = document.createElement('div');
-    modal.id = 'search-modal';
-    modal.className = 'search-modal';
-    modal.style.display = 'none';
+    // Create search overlay and modal
+    const overlay = document.createElement('div');
+    overlay.id = 'search-overlay';
+    overlay.className = 'search-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
 
-    const modalContent = document.createElement('div');
-    modalContent.className = 'search-modal-content';
+    const modal = document.createElement('div');
+    modal.className = 'search-modal';
 
     const searchHeader = document.createElement('div');
     searchHeader.className = 'search-header';
@@ -69,27 +69,27 @@
     searchResults.className = 'search-results';
     searchResults.id = 'search-results';
 
-    modalContent.appendChild(searchHeader);
-    modalContent.appendChild(searchResults);
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
+    modal.appendChild(searchHeader);
+    modal.appendChild(searchResults);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
 
     // Open/close modal
     function openModal() {
-        modal.style.display = 'flex';
+        overlay.setAttribute('aria-hidden', 'false');
         searchInput.focus();
         searchInput.value = '';
         searchResults.textContent = '';
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        overlay.setAttribute('aria-hidden', 'true');
     }
 
     searchTrigger.addEventListener('click', openModal);
 
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
     });
 
     document.addEventListener('keydown', (e) => {
@@ -97,7 +97,7 @@
             e.preventDefault();
             openModal();
         }
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
+        if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') {
             closeModal();
         }
     });
