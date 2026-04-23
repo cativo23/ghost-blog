@@ -6,7 +6,7 @@
 (function() {
     'use strict';
 
-    const searchTrigger = document.getElementById('search-trigger');
+    const searchTrigger = document.getElementById('search-btn');
     if (!searchTrigger) return;
 
     // Create search modal
