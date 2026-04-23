@@ -47,16 +47,25 @@ def convert_post_to_ghost(frontmatter: Dict[str, Any], body: str, slug: str) -> 
     created_ms = int(datetime.fromisoformat(created_at.replace('Z', '+00:00')).timestamp() * 1000)
     updated_ms = int(datetime.fromisoformat(updated_at.replace('Z', '+00:00')).timestamp() * 1000)
 
+    # Create mobiledoc structure for markdown content
+    mobiledoc = {
+        "version": "0.3.1",
+        "atoms": [],
+        "cards": [["markdown", {"markdown": body}]],
+        "markups": [],
+        "sections": [[10, 0]]
+    }
+
     # Ghost post structure
     post = {
         'title': frontmatter.get('title', ''),
         'slug': slug,
-        'markdown': body,
+        'mobiledoc': json.dumps(mobiledoc),
         'status': 'published',
         'created_at': created_ms,
         'published_at': created_ms,
         'updated_at': updated_ms,
-        'feature_image': None,  # Local images not converted
+        'feature_image': None,
         'tags': frontmatter.get('tags', [])
     }
 

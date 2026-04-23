@@ -45,9 +45,10 @@ def test_convert_post_to_ghost():
     assert post['title'] == "Test Post"
     assert post['slug'] == "test-post"
     assert post['status'] == "published"
-    assert post['feature_image'] is None  # Local path, not converted
+    assert post['feature_image'] is None
     assert 'created_at' in post
     assert 'published_at' in post
+    assert 'mobiledoc' in post
 
 
 def test_create_ghost_export():
@@ -56,7 +57,7 @@ def test_create_ghost_export():
         {
             'title': "Post 1",
             'slug': "post-1",
-            'markdown': "Content 1",
+            'mobiledoc': '{"version":"0.3.1"}',
             'status': "published",
             'created_at': 1707408000000,
             'published_at': 1707408000000,
