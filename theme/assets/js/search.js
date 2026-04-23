@@ -125,7 +125,9 @@
         searchResults.appendChild(loading);
 
         try {
-            const apiUrl = `${window.location.origin}/ghost/api/content/posts/?key=${window.ghostContentApiKey}&limit=10&fields=title,slug,excerpt,published_at&filter=title:~'${encodeURIComponent(query)}',excerpt:~'${encodeURIComponent(query)}'`;
+            // Build filter: search in title OR excerpt (+ is OR in NQL)
+            const filter = `title:~'${query}'+excerpt:~'${query}'`;
+            const apiUrl = `${window.location.origin}/ghost/api/content/posts/?key=${window.ghostContentApiKey}&limit=10&fields=title,slug,excerpt,published_at&filter=${encodeURIComponent(filter)}`;
 
             const response = await fetch(apiUrl);
             const data = await response.json();
