@@ -1,1 +1,268 @@
-/* Syntax highlighting — implemented in Task 15 */
+/* Tokyo Night Storm — Prism.js Syntax Highlighting */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #c0caf5;
+    text-shadow: none;
+    font-family: 'Geist Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    tab-size: 4;
+    hyphens: none;
+}
+
+pre[class*="language-"] {
+    background-color: var(--code-block-bg);
+    border: 1px solid var(--code-block-border);
+    border-radius: 8px;
+    padding: 18px;
+    overflow: auto;
+}
+
+:not(pre) > code[class*="language-"] {
+    background-color: var(--code-inline-bg);
+    color: var(--code-inline-text);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Comments */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #565f89;
+    font-style: italic;
+}
+
+/* Punctuation */
+.token.punctuation {
+    color: #89ddff;
+}
+
+/* Namespace */
+.token.namespace {
+    opacity: 0.7;
+}
+
+/* Strings */
+.token.string,
+.token.attr-value {
+    color: #9ece6a;
+}
+
+/* Keywords */
+.token.keyword,
+.token.control,
+.token.directive,
+.token.unit {
+    color: #bb9af7;
+}
+
+/* Functions */
+.token.function {
+    color: #7aa2f7;
+}
+
+/* Classes / Types */
+.token.class-name,
+.token.builtin {
+    color: #2ac3de;
+}
+
+/* Variables / Properties */
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+    color: #ff9e64;
+}
+
+/* Selectors / Regex */
+.token.selector,
+.token.regex,
+.token.important {
+    color: #e0af68;
+}
+
+/* Attributes */
+.token.attr-name {
+    color: #7dcfff;
+}
+
+/* Operators */
+.token.operator,
+.token.entity,
+.token.url {
+    color: #89ddff;
+}
+
+/* Inserted */
+.token.inserted {
+    color: #9ece6a;
+}
+
+/* Deleted */
+.token.deleted {
+    color: #f7768e;
+}
+
+/* Important, Bold */
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+/* Italic */
+.token.italic {
+    font-style: italic;
+}
+
+/* Line highlight */
+.line-highlight {
+    background: rgba(122, 162, 247, 0.08);
+    border-left: 3px solid var(--accent-blue);
+}
+
+/* Line numbers gutter (added by code-blocks.js) */
+.line-numbers-wrapper {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 40px;
+    text-align: right;
+    padding-right: 12px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.line-number {
+    display: block;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: 0.5;
+}
+
+/* Code block with line numbers: add left padding */
+pre.has-line-numbers {
+    padding-left: 52px;
+}
+
+/* Language label (added by code-blocks.js) */
+.code-lang-label {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Copy button (added by code-blocks.js) */
+.code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+pre:hover .code-copy-btn {
+    opacity: 1;
+}
+
+.code-copy-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-blue);
+}
+
+.code-copy-btn.copied {
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+/* When both label and copy button exist, shift the label left */
+pre:has(.code-copy-btn) .code-lang-label {
+    right: auto;
+    left: 12px;
+    top: 8px;
+}
+
+/* Light mode adjustments */
+[data-theme="light"] code[class*="language-"],
+[data-theme="light"] pre[class*="language-"] {
+    color: #343b58;
+}
+
+[data-theme="light"] .token.comment,
+[data-theme="light"] .token.prolog,
+[data-theme="light"] .token.doctype,
+[data-theme="light"] .token.cdata {
+    color: #8990a3;
+}
+
+[data-theme="light"] .token.string,
+[data-theme="light"] .token.attr-value {
+    color: #587539;
+}
+
+[data-theme="light"] .token.keyword {
+    color: #7847bd;
+}
+
+[data-theme="light"] .token.function {
+    color: #2e7de9;
+}
+
+[data-theme="light"] .token.class-name,
+[data-theme="light"] .token.builtin {
+    color: #0db9d7;
+}
+
+[data-theme="light"] .token.property,
+[data-theme="light"] .token.tag,
+[data-theme="light"] .token.boolean,
+[data-theme="light"] .token.number,
+[data-theme="light"] .token.constant,
+[data-theme="light"] .token.symbol {
+    color: #b15c00;
+}
+
+[data-theme="light"] .token.selector,
+[data-theme="light"] .token.regex,
+[data-theme="light"] .token.important {
+    color: #8c6c3e;
+}
+
+[data-theme="light"] .token.attr-name {
+    color: #0db9d7;
+}
+
+[data-theme="light"] .token.punctuation,
+[data-theme="light"] .token.operator {
+    color: #2e7de9;
+}
