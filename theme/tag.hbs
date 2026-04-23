@@ -1,0 +1,10 @@
+{{!< default}}
+<main>
+    <h1>{{tag.name}}</h1>
+    {{#foreach posts}}
+        <article>
+            <h2><a href="{{url}}">{{title}}</a></h2>
+        </article>
+    {{/foreach}}
+    {{pagination}}
+</main>
