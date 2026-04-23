@@ -1,10 +1,50 @@
 {{!< default}}
-<main>
-    <h1>{{tag.name}}</h1>
-    {{#foreach posts}}
-        <article>
-            <h2><a href="{{url}}">{{title}}</a></h2>
+
+<main class="container">
+    {{!-- Tag Header --}}
+    <div class="tag-header">
+        <div class="tag-breadcrumb">
+            <span class="prompt">
+                <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~/tags/$</span>
+            </span>
+            <span class="mono text-muted"> ls {{tag.slug}}/</span>
+        </div>
+        <h1 class="tag-title">#{{tag.name}}</h1>
+        {{#if tag.description}}
+        <p class="tag-description text-muted">{{tag.description}}</p>
+        {{/if}}
+        <div class="tag-count mono text-muted">{{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}</div>
+    </div>
+
+    {{!-- Posts Grid --}}
+    <div class="posts-grid">
+        {{#foreach posts}}
+        <article class="post-card card">
+            {{#if feature_image}}
+            <a href="{{url}}" class="post-card-image">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+            </a>
+            {{/if}}
+            <div class="post-card-content">
+                <div class="tag-pills">
+                    {{#foreach tags limit="2"}}
+                    <a href="{{url}}" class="tag-pill">#{{slug}}</a>
+                    {{/foreach}}
+                </div>
+                <h2 class="post-card-title">
+                    <a href="{{url}}">{{title}}</a>
+                </h2>
+                <p class="post-card-excerpt text-muted">{{excerpt words="20"}}</p>
+                <div class="post-card-meta">
+                    <time class="mono text-muted" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+                    <span class="text-muted">&middot;</span>
+                    <span class="mono text-muted">{{reading_time}} min read</span>
+                </div>
+            </div>
         </article>
-    {{/foreach}}
+        {{/foreach}}
+    </div>
+
+    {{!-- Pagination --}}
     {{pagination}}
 </main>
