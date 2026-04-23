@@ -1,5 +1,101 @@
 {{!< default}}
-<main>
-    <h1>{{statusCode}}</h1>
-    <p>{{message}}</p>
+
+<main class="container">
+    <div class="error-page">
+        <div class="error-breadcrumb">
+            <span class="prompt">
+                <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~$</span>
+            </span>
+            <span class="mono text-muted"> cat {{statusCode}}.md</span>
+        </div>
+
+        <div class="error-content">
+            <h1 class="error-code mono">{{statusCode}}</h1>
+            <p class="error-message">{{message}}</p>
+
+            <div class="error-output mono text-muted">
+                cat: {{statusCode}}.md: No such file or directory
+            </div>
+
+            <div class="error-actions">
+                <a href="{{@site.url}}" class="btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>cd ~/</span>
+                </a>
+                <button class="btn" id="search-trigger-error">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <span>grep -r</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </main>
+
+<style>
+.error-page {
+    max-width: 600px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.error-breadcrumb {
+    margin-bottom: 32px;
+    font-size: 13px;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.error-code {
+    font-size: 72px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    line-height: 1;
+}
+
+.error-message {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.error-output {
+    padding: 16px 20px;
+    background-color: var(--code-block-bg);
+    border: 1px solid var(--code-block-border);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.error-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 56px;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+document.getElementById('search-trigger-error')?.addEventListener('click', () => {
+    document.getElementById('search-trigger')?.click();
+});
+</script>
