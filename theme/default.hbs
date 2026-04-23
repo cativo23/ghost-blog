@@ -28,6 +28,9 @@
 
     {{> search-modal}}
 
+    <script>
+        window.ghostContentApiKey = '{{@site.content_api_key}}';
+    </script>
     <script src="{{asset "js/main.js"}}"></script>
     {{#is "post"}}
     <script src="{{asset "js/toc.js"}}"></script>
