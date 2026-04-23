@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "cativo-terminal.zip"
-          target: "/home/cativo23/ghost-blog"
+          target: "/home/cativo23/deploy/ghost-blog-deploy"
 
       - name: Deploy theme
         uses: appleboy/ssh-action@v1.0.3
@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/cativo23/ghost-blog
+            cd /home/cativo23/deploy/ghost-blog-deploy
             unzip -o cativo-terminal.zip -d content/themes/cativo-terminal
             docker compose restart ghost
             echo "Theme deployed to production"

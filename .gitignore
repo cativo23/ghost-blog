@@ -32,3 +32,4 @@ migration/create_about_page.py
 __pycache__/
 *.pyc
 .pytest_cache/
+migration/update_about_page.py
