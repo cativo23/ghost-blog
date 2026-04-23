@@ -37,10 +37,25 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: theme
+
+      - name: Copy compose file to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "compose.prod.yml"
+          target: "/home/cativo23/deploy/ghost-blog-deploy"
 
       - name: Copy theme to server
         uses: appleboy/scp-action@v0.1.7
@@ -52,15 +67,38 @@ jobs:
           source: "cativo-terminal.zip"
           target: "/home/cativo23/deploy/ghost-blog-deploy"
 
-      - name: Deploy theme
+      - name: Deploy to production
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          envs: DB_PASSWORD
           script: |
             cd /home/cativo23/deploy/ghost-blog-deploy
+
+            # Create .env file with secrets
+            cat > .env << EOF
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            SMTP_HOST=
+            SMTP_PORT=
+            SMTP_USER=
+            SMTP_PASS=
+            EOF
+
+            # Unzip theme
             unzip -o cativo-terminal.zip -d content/themes/cativo-terminal
-            docker compose restart ghost
+
+            # Pull and deploy
+            docker compose -f compose.prod.yml pull
+            docker compose -f compose.prod.yml down || true
+            docker compose -f compose.prod.yml up -d
+
+            # Wait and show logs
+            sleep 10
+            docker compose -f compose.prod.yml logs --tail=50
+
             echo "Theme deployed to production"
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
