@@ -1,1 +1,452 @@
-/* Post content styles — implemented in Task 14 */
+/* === Post Page === */
+.post-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+/* Breadcrumb */
+.post-breadcrumb {
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+/* Post Header */
+.post-header {
+    margin-bottom: 24px;
+}
+
+.post-header .tag-pills {
+    margin-bottom: 12px;
+}
+
+.post-title {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    flex-wrap: wrap;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.post-author-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-author-avatar-placeholder {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+}
+
+.post-author-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Feature Image */
+.post-feature-image {
+    position: relative;
+    margin-bottom: 32px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-primary);
+}
+
+.post-feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Content + TOC Grid */
+.post-grid {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Article Body */
+.post-content {
+    max-width: 720px;
+}
+
+.post-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.post-content h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+.post-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.post-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.post-content a {
+    color: var(--link-color);
+    text-decoration: none;
+    text-underline-offset: 3px;
+    transition: text-decoration 0.2s ease;
+}
+
+.post-content a:hover {
+    text-decoration: underline;
+}
+
+.post-content code:not(pre code) {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    background-color: var(--code-inline-bg);
+    color: var(--code-inline-text);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+}
+
+.post-content pre {
+    position: relative;
+    background-color: var(--code-block-bg);
+    border: 1px solid var(--code-block-border);
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.post-content pre code {
+    font-family: 'Geist Mono', monospace;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-secondary);
+}
+
+.post-content blockquote {
+    border-left: 3px solid var(--blockquote-border);
+    background-color: var(--blockquote-bg);
+    padding: 16px 20px;
+    margin: 0 0 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.post-content blockquote p {
+    margin-bottom: 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid var(--border-primary);
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.post-content ul {
+    list-style-type: disc;
+}
+
+.post-content ol {
+    list-style-type: decimal;
+}
+
+.post-content li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.post-content hr {
+    border: none;
+    border-top: 1px solid var(--border-primary);
+    margin: 32px 0;
+}
+
+.post-content strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.post-content em {
+    font-style: italic;
+}
+
+.post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.post-content th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border-primary);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.post-content td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+}
+
+.post-content tr:hover td {
+    background-color: var(--hover-row-bg);
+}
+
+/* Share Buttons */
+.post-share {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-primary);
+}
+
+.post-share-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.post-share-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+/* Related Posts */
+.related-posts {
+    margin-top: 48px;
+}
+
+.related-header {
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.related-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-left: 2px solid var(--accent-blue);
+}
+
+.related-card:hover {
+    color: inherit;
+}
+
+.related-card-image {
+    height: 140px;
+    overflow: hidden;
+}
+
+.related-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.related-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.related-card-excerpt {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Table of Contents */
+.toc-wrapper {
+    position: sticky;
+    top: 70px;
+}
+
+.toc-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.toc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.toc-title {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.toc-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.toc-toggle:hover {
+    color: var(--text-primary);
+}
+
+.toc-toggle svg {
+    transition: transform 0.2s ease;
+}
+
+.toc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.toc-nav.toc-collapsed {
+    display: none;
+}
+
+.toc-link {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border-left: 2px solid transparent;
+    border-radius: 0 4px 4px 0;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.toc-link:hover {
+    color: var(--text-primary);
+}
+
+.toc-link.active {
+    color: var(--accent-blue);
+    border-left-color: var(--accent-blue);
+    background-color: var(--hover-row-bg);
+}
+
+.toc-link--sub {
+    font-size: 11px;
+    padding-left: 20px;
+}
+
+/* Giscus */
+.giscus-wrapper {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-primary);
+}
+
+.giscus-header {
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .post-sidebar {
+        order: -1;
+    }
+
+    .toc-wrapper {
+        position: static;
+    }
+
+    .toc-toggle {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 24px;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .post-share-buttons {
+        flex-direction: column;
+    }
+}
