@@ -449,4 +449,30 @@
     .post-share-buttons {
         flex-direction: column;
     }
+
+    .post-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .post-sidebar {
+        display: none;
+    }
+
+    .post-content {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .post-content pre {
+        max-width: 100%;
+    }
+
+    .post-content table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
 }

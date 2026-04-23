@@ -484,13 +484,20 @@ code, pre, .mono {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
     background-color: var(--bg-card);
     border-left: 1px solid var(--border-primary);
     z-index: 200;
     transition: right 0.3s ease;
     overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 90%;
+    }
 }
 
 .mobile-menu.open {

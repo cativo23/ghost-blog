@@ -47,29 +47,29 @@
             </button>
         </div>
     </nav>
-
-    <!-- Mobile slide-out menu -->
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-header">
-                <span class="prompt">
-                    <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~$</span>
-                </span>
-                <button class="nav-btn" id="mobile-close" aria-label="Close menu">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <nav class="mobile-nav-links">
-                <a href="/" class="mobile-nav-link {{#is "home"}}active{{/is}}">
-                    <span class="text-muted">$</span> cd ~/posts
-                </a>
-                <a href="/about/" class="mobile-nav-link {{#is "page"}}active{{/is}}">
-                    <span class="text-muted">$</span> cat about.md
-                </a>
-            </nav>
-        </div>
-    </div>
 </header>
+
+<!-- Mobile slide-out menu (outside header to fix z-index stacking) -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <span class="prompt">
+                <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~$</span>
+            </span>
+            <button class="nav-btn" id="mobile-close" aria-label="Close menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="/" class="mobile-nav-link {{#is "home"}}active{{/is}}">
+                <span class="text-muted">$</span> cd ~/posts
+            </a>
+            <a href="/about/" class="mobile-nav-link {{#is "page"}}active{{/is}}">
+                <span class="text-muted">$</span> cat about.md
+            </a>
+        </nav>
+    </div>
+</div>
