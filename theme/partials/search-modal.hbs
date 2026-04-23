@@ -1,0 +1,26 @@
+<!-- Search modal placeholder — populated by search.js -->
+<div class="search-overlay" id="search-overlay" aria-hidden="true">
+    <div class="search-modal">
+        <div class="window-chrome">
+            <span class="window-dot window-dot--red"></span>
+            <span class="window-dot window-dot--yellow"></span>
+            <span class="window-dot window-dot--green"></span>
+            <span class="window-title">cativo@blog — search</span>
+            <button class="search-close" id="search-close" aria-label="Close search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="search-input-wrapper">
+            <span class="prompt mono">cativo@blog:~$ grep -ri "</span>
+            <input type="text" id="search-input" class="search-input" placeholder="search posts..." autocomplete="off" aria-label="Search posts">
+            <span class="prompt mono">"</span>
+        </div>
+        <div class="search-results" id="search-results"></div>
+        <div class="search-footer">
+            <span class="text-muted mono" id="search-stats"></span>
+        </div>
+    </div>
+</div>
