@@ -7,19 +7,19 @@
             <span class="prompt">
                 <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~/authors/$</span>
             </span>
-            <span class="mono text-muted"> cat {{author.slug}}.md</span>
+            <span class="mono text-muted"> cat {{primary_author.slug}}.md</span>
         </div>
 
         <div class="author-profile">
-            {{#if author.profile_image}}
-            <img src="{{img_url author.profile_image size="m"}}" alt="{{author.name}}" class="author-avatar">
+            {{#if primary_author.profile_image}}
+            <img src="{{img_url primary_author.profile_image size="m"}}" alt="{{primary_author.name}}" class="author-avatar">
             {{else}}
             <div class="author-avatar-placeholder"></div>
             {{/if}}
             <div class="author-info">
-                <h1 class="author-name">{{author.name}}</h1>
-                {{#if author.bio}}
-                <p class="author-bio text-muted">{{author.bio}}</p>
+                <h1 class="author-name">{{primary_author.name}}</h1>
+                {{#if primary_author.bio}}
+                <p class="author-bio text-muted">{{primary_author.bio}}</p>
                 {{/if}}
                 <div class="author-meta mono text-muted">
                     {{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}
