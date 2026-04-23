@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title}}</title>
+
+    <link rel="stylesheet" href="{{asset "css/tokyo-night.css"}}">
     <link rel="stylesheet" href="{{asset "css/ghost-cards.css"}}">
+    <link rel="stylesheet" href="{{asset "css/main.css"}}">
+    {{#is "post"}}
+    <link rel="stylesheet" href="{{asset "css/post.css"}}">
+    <link rel="stylesheet" href="{{asset "css/syntax.css"}}">
+    {{/is}}
+
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
-    {{{body}}}
+    <div class="site-wrapper">
+        {{> header}}
+
+        <main class="site-content">
+            {{{body}}}
+        </main>
+
+        {{> footer}}
+    </div>
+
+    {{> search-modal}}
+
+    <script src="{{asset "js/main.js"}}"></script>
+    {{#is "post"}}
+    <script src="{{asset "js/toc.js"}}"></script>
+    <script src="{{asset "js/code-blocks.js"}}"></script>
+    <script src="{{asset "js/progress.js"}}"></script>
+    {{/is}}
+    <script src="{{asset "js/search.js"}}"></script>
+
     {{ghost_foot}}
 </body>
 </html>
