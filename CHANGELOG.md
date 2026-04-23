@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2026-04-23
+
+### Fixed
+- MySQL container compatibility - switched from mysql:8 to mysql:5.7 for x86-64 baseline CPU support
+
 ## [1.0.1] - 2026-04-23
 
 ### Fixed
