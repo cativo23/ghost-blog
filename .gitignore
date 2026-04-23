@@ -1,0 +1,30 @@
+# Environment
+.env
+
+# Node
+node_modules/
+
+# Ghost content volume data
+ghost-content/
+db-data/
+
+# Theme zip builds
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Migration output
+ghost-import.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
