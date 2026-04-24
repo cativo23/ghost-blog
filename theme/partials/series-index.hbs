@@ -1,0 +1,22 @@
+{{#foreach tags visibility="internal"}}
+  {{#match slug "~" "series-"}}
+    {{#get "posts" filter="tag:{{slug}}" limit="all" order="published_at asc"}}
+      {{#if posts}}
+      <div class="series-index">
+        <div class="series-header">
+          <span class="series-title"></span>
+          <span class="series-toggle">▼</span>
+        </div>
+        <ol class="series-list">
+          {{#foreach posts}}
+          <li class="series-item" data-post-slug="{{slug}}">
+            <span class="series-number">{{@number}}.</span>
+            <a href="{{url}}" class="series-link">{{title}}</a>
+          </li>
+          {{/foreach}}
+        </ol>
+      </div>
+      {{/if}}
+    {{/get}}
+  {{/match}}
+{{/foreach}}

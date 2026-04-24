@@ -1,0 +1,358 @@
+<style>
+  :root {
+    --bg-primary: #1a1b26;
+    --bg-card: #24283b;
+    --bg-elevated: #292e42;
+    --text-primary: #c0caf5;
+    --text-secondary: #a9b1d6;
+    --text-muted: #565f89;
+    --border-primary: #414868;
+    --accent-cyan: #7dcfff;
+    --accent-magenta: #9d7cd8;
+    --accent-green: #9ece6a;
+    --prompt-color: #9ece6a;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mockup-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .mockup-section {
+    margin-bottom: 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .mockup-label {
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  /* Series Badge */
+  .series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(157, 124, 216, 0.15);
+    border: 1px solid rgba(157, 124, 216, 0.3);
+    color: var(--accent-magenta);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .prompt-line {
+    color: var(--prompt-color);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Series Index */
+  .series-index {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  .series-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .series-header:hover {
+    background: rgba(122, 162, 247, 0.05);
+  }
+
+  .series-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .series-toggle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .series-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .series-item {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+
+  .series-item:last-child {
+    border-bottom: none;
+  }
+
+  .series-item:hover {
+    background: rgba(122, 162, 247, 0.05);
+  }
+
+  .series-item.current {
+    background: rgba(158, 206, 106, 0.1);
+    border-left: 3px solid var(--accent-green);
+  }
+
+  .series-number {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    min-width: 2rem;
+  }
+
+  .series-item.current .series-number {
+    color: var(--accent-green);
+    font-weight: bold;
+  }
+
+  .series-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    flex: 1;
+    font-size: 0.9rem;
+  }
+
+  .series-item.current .series-link {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .series-link:hover {
+    color: var(--accent-cyan);
+  }
+
+  .current-indicator {
+    color: var(--accent-green);
+    font-size: 0.875rem;
+  }
+
+  /* Blog Index Card */
+  .blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .blog-card:hover {
+    border-color: var(--accent-cyan);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    flex: 1;
+  }
+
+  .card-badge {
+    background: rgba(157, 124, 216, 0.15);
+    border: 1px solid rgba(157, 124, 216, 0.3);
+    color: var(--accent-magenta);
+    padding: 0.125rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+
+  .card-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .card-date {
+    color: var(--text-muted);
+  }
+
+  .card-link {
+    color: var(--accent-cyan);
+    text-decoration: none;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border-primary);
+    margin: 2rem 0;
+  }
+</style>
+
+<div class="mockup-container">
+  <h2 style="color: var(--accent-cyan); margin-bottom: 2rem;">Blog Series UI Design</h2>
+
+  <!-- Post Page View -->
+  <div class="mockup-section">
+    <span class="mockup-label">Vista de Post Individual</span>
+
+    <div class="prompt-line">
+      <span style="color: var(--accent-green);">cativo</span><span style="color: var(--text-muted);">@</span><span style="color: var(--accent-green);">blog</span><span style="color: var(--text-muted);">:~/posts/$</span> cat nova-id-day-1.md
+    </div>
+
+    <div class="series-badge">
+      <span>Nova ID</span>
+      <span style="color: var(--text-muted);">•</span>
+      <span>1/8</span>
+    </div>
+
+    <h1 class="post-title">❯ Nova ID - Day 1: Why Traditional Security Is Bullshit</h1>
+
+    <p style="color: var(--text-secondary); margin: 1rem 0 2rem 0; line-height: 1.6;">
+      I decided to build a Zero Trust identity system from scratch using the Ory Stack. Here's the Day 1 brain dump — the architecture, the excitement, and the list of things that already scare me.
+    </p>
+
+    <div style="background: var(--bg-primary); padding: 1rem; border-radius: 4px; margin-bottom: 2rem;">
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
+        [Contenido del post aquí...]
+      </p>
+    </div>
+
+    <!-- Series Index -->
+    <div class="series-index">
+      <div class="series-header">
+        <span class="series-title">📚 Nova ID Series (1/8)</span>
+        <span class="series-toggle">▼</span>
+      </div>
+      <ul class="series-list">
+        <li class="series-item current">
+          <span class="series-number">1.</span>
+          <span class="series-link">Day 1: Why Traditional Security Is Bullshit</span>
+          <span class="current-indicator">← estás aquí</span>
+        </li>
+        <li class="series-item">
+          <span class="series-number">2.</span>
+          <a href="#" class="series-link">Day 2-3: Docker Compose Hell</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">3.</span>
+          <a href="#" class="series-link">Day 4-5: When a General Gets a 403</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">4.</span>
+          <a href="#" class="series-link">Day 6-8: Fighting Vue's Reactivity System</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">5.</span>
+          <a href="#" class="series-link">Day 9-15: Seven Days of Everything Breaking</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">6.</span>
+          <a href="#" class="series-link">Day 16: Is This Thing Production-Ready? (No.)</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">7.</span>
+          <a href="#" class="series-link">Day 17: Tearing the Frontend Apart</a>
+        </li>
+        <li class="series-item">
+          <span class="series-number">8.</span>
+          <a href="#" class="series-link">Day 18: Proving Zero Trust Actually Works</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Blog Index View -->
+  <div class="mockup-section">
+    <span class="mockup-label">Vista de Lista de Blog</span>
+
+    <div class="blog-card">
+      <div class="card-header">
+        <h3 class="card-title">Nova ID - Day 1: Why Traditional Security Is Bullshit</h3>
+        <span class="card-badge">1/8</span>
+      </div>
+      <p class="card-description">
+        I decided to build a Zero Trust identity system from scratch using the Ory Stack. Here's the Day 1 brain dump...
+      </p>
+      <div class="card-footer">
+        <span class="card-date">Jan 15, 2026</span>
+        <a href="#" class="card-link">❯ Read More →</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="card-header">
+        <h3 class="card-title">Nova ID - Day 2-3: Docker Compose Hell</h3>
+        <span class="card-badge">2/8</span>
+      </div>
+      <p class="card-description">
+        Two days of wrestling Docker Compose, debugging phantom emails, decoding CORS nonsense...
+      </p>
+      <div class="card-footer">
+        <span class="card-date">Jan 16, 2026</span>
+        <a href="#" class="card-link">❯ Read More →</a>
+      </div>
+    </div>
+
+    <div class="blog-card" style="opacity: 0.6;">
+      <div class="card-header">
+        <h3 class="card-title">My Server Was a Security Dumpster Fire</h3>
+        <span style="color: var(--text-muted); font-size: 0.75rem; margin-left: 1rem;">(post no-serie intercalado)</span>
+      </div>
+      <p class="card-description">
+        I audited my home server and found the Docker socket wide open, default credentials in production...
+      </p>
+      <div class="card-footer">
+        <span class="card-date">Mar 21, 2026</span>
+        <a href="#" class="card-link">❯ Read More →</a>
+      </div>
+    </div>
+  </div>
+</div>

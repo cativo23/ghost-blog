@@ -18,6 +18,16 @@
             {{/foreach}}
         </div>
 
+        {{#foreach tags visibility="internal"}}
+          {{#match slug "~" "series-"}}
+            <div class="series-badge" data-series-name="{{name}}">
+              <span class="series-badge-name"></span>
+              <span class="series-badge-separator">•</span>
+              <span class="series-badge-position"></span>
+            </div>
+          {{/match}}
+        {{/foreach}}
+
         <h1 class="post-title">{{title}}</h1>
 
         <div class="post-meta">
@@ -53,6 +63,9 @@
             {{> toc}}
         </aside>
     </div>
+
+    {{!-- Series Index --}}
+    {{> series-index}}
 
     {{!-- Share Buttons --}}
     <section class="post-share">

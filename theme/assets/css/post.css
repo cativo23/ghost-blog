@@ -248,6 +248,149 @@
     background-color: var(--hover-row-bg);
 }
 
+/* Series Badge */
+.series-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(157, 124, 216, 0.15);
+    border: 1px solid rgba(157, 124, 216, 0.3);
+    color: var(--accent-magenta);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    font-family: 'Geist Mono', monospace;
+}
+
+.series-badge-separator {
+    color: var(--text-muted);
+}
+
+/* Series Index */
+.series-index {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    margin-top: 3rem;
+    overflow: hidden;
+}
+
+.series-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.series-header:hover {
+    background: var(--hover-row-bg);
+}
+
+.series-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.series-toggle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.series-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.series-index.collapsed .series-list {
+    display: none;
+}
+
+.series-index.collapsed .series-header {
+    border-bottom: none;
+}
+
+.series-item {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s;
+}
+
+.series-item:last-child {
+    border-bottom: none;
+}
+
+.series-item:hover {
+    background: var(--hover-row-bg);
+}
+
+.series-item.current {
+    background: rgba(158, 206, 106, 0.1);
+    border-left: 3px solid var(--accent-green);
+}
+
+.series-number {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    min-width: 2rem;
+    font-family: 'Geist Mono', monospace;
+}
+
+.series-item.current .series-number {
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+.series-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.series-item.current .series-link {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+a.series-link:hover {
+    color: var(--accent-cyan);
+}
+
+.current-indicator {
+    color: var(--accent-green);
+    font-size: 0.875rem;
+    font-family: 'Geist Mono', monospace;
+}
+
+/* Feed Series Badge */
+.feed-series-badge {
+    background: rgba(157, 124, 216, 0.15);
+    border: 1px solid rgba(157, 124, 216, 0.3);
+    color: var(--accent-magenta);
+    padding: 0.125rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-family: 'Geist Mono', monospace;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+}
+
+/* Hero Card Series Badge */
+.badge--series {
+    background: rgba(157, 124, 216, 0.15);
+    border: 1px solid rgba(157, 124, 216, 0.3);
+    color: var(--accent-magenta);
+}
+
 /* Share Buttons */
 .post-share {
     margin-top: 48px;
@@ -457,6 +600,14 @@
 
     .post-sidebar {
         display: none;
+    }
+
+    .series-item {
+        padding: 0.5rem 1rem;
+    }
+
+    .series-header {
+        padding: 0.75rem 1rem;
     }
 
     .post-content {

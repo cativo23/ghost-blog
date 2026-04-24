@@ -2,6 +2,11 @@
     <span class="feed-col feed-col--date mono">{{date format="MMM DD"}}</span>
     <span class="feed-col feed-col--title">
         <span class="feed-title">{{title}}</span>
+        {{#foreach tags visibility="internal"}}
+          {{#match slug "~" "series-"}}
+            <span class="feed-series-badge">{{name}}</span>
+          {{/match}}
+        {{/foreach}}
         <span class="feed-slug mono text-muted">~/posts/{{slug}}.md</span>
     </span>
     <span class="feed-col feed-col--tags">
