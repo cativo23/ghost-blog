@@ -8,8 +8,9 @@ node_modules/
 ghost-content/
 db-data/
 
-# Theme zip builds
+# Theme build artifacts
 *.zip
+*.tar.gz
 
 # OS
 .DS_Store
@@ -24,12 +25,8 @@ Thumbs.db
 # Migration output
 ghost-import.json
 
-# Migration scripts with API keys
-migration/assign_tags.py
-migration/create_about_page.py
-
 # Python
 __pycache__/
 *.pyc
 .pytest_cache/
-migration/update_about_page.py
+migration/.venv/
