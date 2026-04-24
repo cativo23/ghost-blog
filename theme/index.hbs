@@ -3,12 +3,8 @@
 <section class="homepage">
     {{!-- Hero Featured Post --}}
     <section class="hero-section">
-        {{#get "posts" filter="featured:true" limit="1"}}
+        {{#get "posts" limit="1" order="featured desc, published_at desc" include="tags,authors"}}
             {{#foreach posts}}
-                {{> post-card}}
-            {{/foreach}}
-        {{else}}
-            {{#foreach posts limit="1"}}
                 {{> post-card}}
             {{/foreach}}
         {{/get}}
