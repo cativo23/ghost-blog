@@ -164,6 +164,6 @@ These posts need series metadata added:
 
 ## References
 
-- Mockup: `portfolio/.superpowers/brainstorm/1190346-1776994981/content/series-ui-mockup.html`
+- Mockup: `.superpowers/brainstorm/content/series-ui-mockup.html` (open in browser to see design)
 - Ghost Custom Fields: https://ghost.org/docs/themes/helpers/get/
 - Tokyo Night colors: `theme/assets/css/tokyo-night.css`
