@@ -22,14 +22,14 @@ jobs:
       - name: Build theme
         run: |
           cd theme
-          find . -type f ! -path '*/\.*' -print | python3 -c "import sys, zipfile; z = zipfile.ZipFile('../cativo-terminal.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(line.strip()[2:]) for line in sys.stdin if line.strip()]; z.close()"
+          find . -type f ! -path '*/\.*' -print | python3 -c "import sys, zipfile; z = zipfile.ZipFile('../cativo-nightwire.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(line.strip()[2:]) for line in sys.stdin if line.strip()]; z.close()"
           cd ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: theme
-          path: cativo-terminal.zip
+          path: cativo-nightwire.zip
 
   deploy:
     name: Deploy to Production
@@ -64,7 +64,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "cativo-terminal.zip"
+          source: "cativo-nightwire.zip"
           target: "/home/cativo23/deploy/ghost-blog-deploy"
 
       - name: Deploy to production
@@ -88,7 +88,7 @@ jobs:
             EOF
 
             # Unzip theme
-            unzip -o cativo-terminal.zip -d content/themes/cativo-terminal
+            unzip -o cativo-nightwire.zip -d content/themes/cativo-nightwire
 
             # Pull and deploy
             docker compose -f compose.prod.yml pull
