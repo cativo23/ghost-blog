@@ -43,7 +43,7 @@
             <span>&middot;</span>
             <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
             <span>&middot;</span>
-            <span>{{reading_time}} min read</span>
+            <span>{{reading_time}}</span>
         </div>
     </header>
 
@@ -122,7 +122,7 @@
                     </div>
                     <h3 class="related-card-title">{{title}}</h3>
                     <p class="related-card-excerpt">{{excerpt words="15"}}</p>
-                    <span class="text-muted" style="font-family:var(--font-sys);font-size:11px;">{{date format="MMM DD"}} &middot; {{reading_time}} min</span>
+                    <span class="text-muted" style="font-family:var(--font-sys);font-size:11px;">{{date format="MMM DD"}} &middot; {{reading_time minute="1 min" minutes="% min"}}</span>
                 </div>
             </a>
             {{/foreach}}
