@@ -1,50 +1,49 @@
 {{!< default}}
 
 <main class="container">
-    {{!-- Tag Header --}}
-    <div class="tag-header">
-        <div class="tag-breadcrumb">
-            <span class="prompt">
-                <span class="prompt-user">cativo</span><span class="prompt-separator">@</span><span class="prompt-path">blog</span><span class="prompt-separator">:~/tags/$</span>
-            </span>
-            <span class="mono text-muted"> ls {{tag.slug}}/</span>
+    <div class="tag-header" style="margin-bottom:40px;">
+        <div class="crumb" style="margin-bottom:16px;">
+            <span class="crumb-label">Tags</span>
+            <span style="color:var(--border-accent)">›</span>
+            <span class="crumb-value">{{tag.slug}}</span>
         </div>
         <h1 class="tag-title">#{{tag.name}}</h1>
         {{#if tag.description}}
-        <p class="tag-description text-muted">{{tag.description}}</p>
+        <p class="tag-description text-muted" style="margin-top:10px;font-size:14px;line-height:1.6;">{{tag.description}}</p>
         {{/if}}
-        <div class="tag-count mono text-muted">{{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}</div>
+        <div class="tag-count" style="margin-top:10px;font-family:var(--font-stamp);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--nw-primary);">
+            <span class="led led--green"></span>
+            {{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}
+        </div>
     </div>
 
-    {{!-- Posts Grid --}}
-    <div class="posts-grid">
+    <div class="posts-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
         {{#foreach posts}}
         <article class="post-card card">
             {{#if feature_image}}
-            <a href="{{url}}" class="post-card-image">
-                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+            <a href="{{url}}" class="post-card-image" style="display:block;overflow:hidden;height:160px;">
+                <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.85);">
             </a>
             {{/if}}
-            <div class="post-card-content">
+            <div class="post-card-content" style="padding:16px;display:flex;flex-direction:column;gap:8px;">
                 <div class="tag-pills">
                     {{#foreach tags limit="2"}}
                     <a href="{{url}}" class="tag-pill">#{{slug}}</a>
                     {{/foreach}}
                 </div>
-                <h2 class="post-card-title">
-                    <a href="{{url}}">{{title}}</a>
+                <h2 class="post-card-title" style="font-size:15px;font-weight:600;line-height:1.3;">
+                    <a href="{{url}}" style="color:inherit;">{{title}}</a>
                 </h2>
-                <p class="post-card-excerpt text-muted">{{excerpt words="20"}}</p>
-                <div class="post-card-meta">
-                    <time class="mono text-muted" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
-                    <span class="text-muted">&middot;</span>
-                    <span class="mono text-muted">{{reading_time}} min read</span>
+                <p class="text-muted" style="font-size:13px;line-height:1.5;">{{excerpt words="20"}}</p>
+                <div style="display:flex;gap:8px;align-items:center;font-family:var(--font-sys);font-size:12px;color:var(--text-muted);">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+                    <span>&middot;</span>
+                    <span>{{reading_time}} min</span>
                 </div>
             </div>
         </article>
         {{/foreach}}
     </div>
 
-    {{!-- Pagination --}}
     {{pagination}}
 </main>

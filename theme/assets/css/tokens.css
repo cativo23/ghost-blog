@@ -1,0 +1,78 @@
+/* ═══════════════════════════════════════════════════════════════
+   Theme tokens — Nightwire bridge
+   Maps legacy variable names used across main.css/post.css to
+   Nightwire palette. Dark-only by design.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+    /* Surfaces */
+    --bg-primary:        var(--void);
+    --bg-card:           var(--void-warm);
+    --bg-elevated:       var(--void-panel);
+    --bg-raised:         var(--void-raised);
+
+    /* Text */
+    --text-primary:      var(--nw-text);
+    --text-secondary:    #d4d4d4;
+    --text-muted:        var(--nw-text-dim);
+    --text-faint:        var(--nw-text-faint);
+
+    /* Borders */
+    --border-primary:    var(--nw-text-line);
+    --border-subtle:     var(--nw-text-faint);
+    --border-accent:     var(--nw-primary-dim);
+
+    /* Accents (mapped onto Nightwire palette) */
+    --accent-blue:       var(--nw-primary);
+    --accent-cyan:       var(--nw-cyan);
+    --accent-green:      var(--nw-green);
+    --accent-yellow:     var(--nw-yellow);
+    --accent-orange:     var(--nw-yellow);
+    --accent-red:        var(--nw-red);
+    --accent-purple:     var(--nw-purple);
+    --accent-magenta:    var(--nw-purple);
+
+    /* Functional */
+    --link-color:        var(--nw-primary);
+    --link-hover:        var(--nw-primary-hot);
+    --prompt-color:      var(--nw-green);
+    --cursor-color:      var(--nw-primary);
+
+    /* Featured / tag chrome */
+    --badge-featured-bg:     var(--nw-primary-fill);
+    --badge-featured-text:   var(--nw-primary);
+    --badge-featured-border: var(--nw-primary-dim);
+    --tag-bg:                var(--nw-text-faint);
+    --tag-text:              var(--nw-primary);
+    --tag-border:            var(--nw-text-line);
+
+    /* Inline highlights */
+    --highlight-bg:          var(--nw-yellow-fill);
+    --highlight-text:        var(--nw-yellow);
+
+    /* Code chrome */
+    --code-inline-bg:        var(--void-panel);
+    --code-inline-text:      var(--nw-cyan);
+    --code-block-bg:         var(--void-panel);
+    --code-block-border:     var(--nw-text-line);
+
+    /* Quotes */
+    --blockquote-border:     var(--nw-primary);
+    --blockquote-bg:         var(--nw-primary-fill);
+
+    /* Scrollbar */
+    --scrollbar-thumb:       var(--nw-text-line);
+    --scrollbar-track:       var(--void);
+
+    /* Misc */
+    --progress-bar:          var(--nw-primary);
+    --overlay-bg:            rgba(0, 0, 0, 0.85);
+    --shadow-color:          rgba(0, 0, 0, 0.6);
+    --hover-row-bg:          var(--nw-primary-fill);
+    --hover-row-border:      var(--nw-primary);
+
+    /* LEDs / status dots */
+    --dot-red:               var(--nw-red);
+    --dot-yellow:            var(--nw-yellow);
+    --dot-green:             var(--nw-green);
+}

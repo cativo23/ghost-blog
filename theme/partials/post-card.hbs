@@ -9,14 +9,17 @@
             <div class="hero-card-scanlines"></div>
             <div class="hero-card-badges">
                 {{#if featured}}
-                <span class="badge badge--featured">FEATURED</span>
+                <span class="badge badge--featured">
+                    <span class="led led--red"></span>
+                    Featured
+                </span>
                 {{/if}}
                 {{#foreach tags visibility="internal"}}
                   {{#match slug "~" "series-"}}
                     <span class="badge badge--series">{{name}}</span>
                   {{/match}}
                 {{/foreach}}
-                <span class="badge badge--time">{{reading_time}}</span>
+                <span class="badge badge--time">{{reading_time}} min</span>
             </div>
         </div>
         <div class="hero-card-body">
@@ -34,11 +37,11 @@
                     {{else}}
                     <div class="hero-card-avatar-placeholder"></div>
                     {{/if}}
-                    <span class="text-muted">{{primary_author.name}}</span>
-                    <span class="text-muted">&middot;</span>
-                    <span class="text-muted">{{date format="MMM DD, YYYY"}}</span>
+                    <span>{{primary_author.name}}</span>
+                    <span>&middot;</span>
+                    <span>{{date format="MMM DD, YYYY"}}</span>
                 </div>
-                <span class="hero-card-cta mono">cat post.md &rarr;</span>
+                <span class="hero-card-cta">Read &rarr;</span>
             </div>
         </div>
     </a>
