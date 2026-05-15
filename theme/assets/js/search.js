@@ -1,98 +1,41 @@
 /**
- * Terminal Grep Search
- * Ghost Content API search with terminal aesthetic
+ * Search — Nightwire edition
+ * Uses the static modal from search-modal.hbs.
  */
-
-(function() {
+(function () {
     'use strict';
 
-    const searchTrigger = document.getElementById('search-btn');
-    if (!searchTrigger) return;
+    var searchBtn = document.getElementById('search-btn');
+    if (!searchBtn) return;
 
-    // Create search overlay and modal
-    const overlay = document.createElement('div');
-    overlay.id = 'search-overlay';
-    overlay.className = 'search-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
+    var overlay = document.getElementById('search-overlay');
+    var searchInput = document.getElementById('search-input');
+    var searchResults = document.getElementById('search-results');
+    var searchClose = document.getElementById('search-close');
+    var searchStats = document.getElementById('search-stats');
 
-    const modal = document.createElement('div');
-    modal.className = 'search-modal';
+    if (!overlay || !searchInput || !searchResults) return;
 
-    const searchHeader = document.createElement('div');
-    searchHeader.className = 'search-header';
-
-    // Build prompt safely
-    const prompt = document.createElement('span');
-    prompt.className = 'prompt';
-
-    const promptUser = document.createElement('span');
-    promptUser.className = 'prompt-user';
-    promptUser.textContent = 'cativo';
-
-    const promptSep1 = document.createElement('span');
-    promptSep1.className = 'prompt-separator';
-    promptSep1.textContent = '@';
-
-    const promptPath = document.createElement('span');
-    promptPath.className = 'prompt-path';
-    promptPath.textContent = 'blog';
-
-    const promptSep2 = document.createElement('span');
-    promptSep2.className = 'prompt-separator';
-    promptSep2.textContent = ':~$';
-
-    prompt.appendChild(promptUser);
-    prompt.appendChild(promptSep1);
-    prompt.appendChild(promptPath);
-    prompt.appendChild(promptSep2);
-
-    const grepCmd = document.createElement('span');
-    grepCmd.className = 'mono text-muted';
-    grepCmd.textContent = ' grep -r "';
-
-    searchHeader.appendChild(prompt);
-    searchHeader.appendChild(grepCmd);
-
-    const searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.className = 'search-input';
-    searchInput.placeholder = 'search posts...';
-
-    const closingQuote = document.createElement('span');
-    closingQuote.className = 'mono text-muted';
-    closingQuote.textContent = '" ./posts/';
-
-    searchHeader.appendChild(searchInput);
-    searchHeader.appendChild(closingQuote);
-
-    const searchResults = document.createElement('div');
-    searchResults.className = 'search-results';
-    searchResults.id = 'search-results';
-
-    modal.appendChild(searchHeader);
-    modal.appendChild(searchResults);
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Open/close modal
     function openModal() {
         overlay.setAttribute('aria-hidden', 'false');
         searchInput.focus();
         searchInput.value = '';
         searchResults.textContent = '';
+        if (searchStats) searchStats.textContent = '';
     }
 
     function closeModal() {
         overlay.setAttribute('aria-hidden', 'true');
     }
 
-    searchTrigger.addEventListener('click', openModal);
+    searchBtn.addEventListener('click', openModal);
+    if (searchClose) searchClose.addEventListener('click', closeModal);
 
-    overlay.addEventListener('click', (e) => {
+    overlay.addEventListener('click', function (e) {
         if (e.target === overlay) closeModal();
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function (e) {
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
             openModal();
@@ -102,88 +45,89 @@
         }
     });
 
-    // Search functionality
-    let searchTimeout;
+    var searchTimeout;
 
-    searchInput.addEventListener('input', () => {
+    searchInput.addEventListener('input', function () {
         clearTimeout(searchTimeout);
-        const query = searchInput.value.trim();
-
+        var query = searchInput.value.trim();
         if (query.length < 2) {
             searchResults.textContent = '';
+            if (searchStats) searchStats.textContent = '';
             return;
         }
-
-        searchTimeout = setTimeout(() => performSearch(query), 300);
+        searchTimeout = setTimeout(function () { performSearch(query); }, 300);
     });
 
-    async function performSearch(query) {
+    function performSearch(query) {
         searchResults.textContent = '';
-        const loading = document.createElement('div');
-        loading.className = 'search-loading mono text-muted';
+        var loading = document.createElement('div');
+        loading.className = 'search-loading';
         loading.textContent = 'Searching...';
         searchResults.appendChild(loading);
 
-        try {
-            // Search by title only (excerpt is not filterable in Ghost API)
-            const filter = `title:~'${query}'`;
-            const apiUrl = `${window.location.origin}/ghost/api/content/posts/?key=${window.ghostContentApiKey}&limit=10&fields=title,slug,excerpt,published_at&filter=${encodeURIComponent(filter)}`;
+        var filter = "title:~'" + query + "'";
+        var apiUrl = window.location.origin + '/ghost/api/content/posts/?key=' +
+            (window.ghostContentApiKey || '') +
+            '&limit=10&fields=title,slug,excerpt,published_at&filter=' +
+            encodeURIComponent(filter);
 
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-
-            if (!data.posts || data.posts.length === 0) {
+        fetch(apiUrl)
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
                 searchResults.textContent = '';
-                const noResults = document.createElement('div');
-                noResults.className = 'search-no-results mono text-muted';
-                noResults.textContent = 'grep: no matches found';
-                searchResults.appendChild(noResults);
-                return;
-            }
-
-            displayResults(data.posts);
-        } catch (error) {
-            console.error('Search error:', error);
-            searchResults.textContent = '';
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'search-error mono text-muted';
-            errorDiv.textContent = 'grep: search failed';
-            searchResults.appendChild(errorDiv);
-        }
+                if (!data.posts || data.posts.length === 0) {
+                    var none = document.createElement('div');
+                    none.className = 'search-no-results';
+                    none.textContent = 'No matches found';
+                    searchResults.appendChild(none);
+                    if (searchStats) searchStats.textContent = '';
+                    return;
+                }
+                displayResults(data.posts, query);
+                if (searchStats) {
+                    searchStats.textContent = data.posts.length + ' result' + (data.posts.length !== 1 ? 's' : '');
+                }
+            })
+            .catch(function (err) {
+                console.error('Search error:', err);
+                searchResults.textContent = '';
+                var errDiv = document.createElement('div');
+                errDiv.className = 'search-error';
+                errDiv.textContent = 'Search failed — check API key';
+                searchResults.appendChild(errDiv);
+            });
     }
 
-    function displayResults(posts) {
-        searchResults.textContent = '';
-
-        posts.forEach(post => {
-            const result = document.createElement('a');
-            result.href = `/${post.slug}/`;
+    function displayResults(posts, query) {
+        posts.forEach(function (post) {
+            var result = document.createElement('a');
+            result.href = '/' + post.slug + '/';
             result.className = 'search-result';
 
-            const resultLine = document.createElement('div');
-            resultLine.className = 'search-result-line mono';
+            var line = document.createElement('div');
+            line.className = 'search-result-line';
 
-            const path = document.createElement('span');
-            path.className = 'search-result-path';
-            path.textContent = `./posts/${post.slug}.md`;
+            var path = document.createElement('span');
+            path.className = 'search-result-path stamp';
+            path.textContent = post.slug;
 
-            const separator = document.createElement('span');
-            separator.className = 'text-muted';
-            separator.textContent = ':';
+            var sep = document.createElement('span');
+            sep.className = 'text-muted';
+            sep.textContent = '  ·  ';
 
-            const match = document.createElement('span');
-            match.className = 'search-result-match';
-            match.textContent = ` ${post.title}`;
+            var title = document.createElement('span');
+            title.className = 'search-result-match';
+            title.textContent = post.title;
 
-            resultLine.appendChild(path);
-            resultLine.appendChild(separator);
-            resultLine.appendChild(match);
+            line.appendChild(path);
+            line.appendChild(sep);
+            line.appendChild(title);
 
-            const excerpt = document.createElement('div');
+            var excerpt = document.createElement('div');
             excerpt.className = 'search-result-excerpt text-muted';
-            excerpt.textContent = post.excerpt;
+            excerpt.textContent = post.excerpt || '';
 
-            result.appendChild(resultLine);
+            result.appendChild(line);
             result.appendChild(excerpt);
             searchResults.appendChild(result);
         });

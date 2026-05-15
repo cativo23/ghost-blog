@@ -74,7 +74,7 @@ jobs:
         if: steps.check_tag.outputs.exists != 'true'
         run: |
           cd theme
-          find . -type f ! -path '*/\.*' -print | python3 -c "import sys, zipfile; z = zipfile.ZipFile('../cativo-terminal.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(line.strip()[2:]) for line in sys.stdin if line.strip()]; z.close()"
+          find . -type f ! -path '*/\.*' -print | python3 -c "import sys, zipfile; z = zipfile.ZipFile('../cativo-nightwire.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(line.strip()[2:]) for line in sys.stdin if line.strip()]; z.close()"
           cd ..
 
       - name: Parse release notes
@@ -99,4 +99,4 @@ jobs:
         run: |
           FLAGS=""
           [[ "$PRERELEASE" == "true" ]] && FLAGS="--prerelease"
-          gh release create "$TAG" --title "$TAG" --notes-file /tmp/notes.md --target "$MERGE_SHA" cativo-terminal.zip $FLAGS
+          gh release create "$TAG" --title "$TAG" --notes-file /tmp/notes.md --target "$MERGE_SHA" cativo-nightwire.zip $FLAGS

@@ -1,0 +1,5 @@
+services:
+  ghost:
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+      - ./theme:/var/lib/ghost/content/themes/cativo-nightwire

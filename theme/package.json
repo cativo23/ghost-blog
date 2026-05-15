@@ -1,7 +1,7 @@
 {
-  "name": "cativo-terminal",
-  "description": "Terminal-themed Ghost blog theme with Tokyo Night palette",
-  "version": "1.0.0",
+  "name": "cativo-nightwire",
+  "description": "Nightwire cyberpunk Ghost blog theme — void black, soft neon palette, dark-only",
+  "version": "1.1.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
@@ -13,8 +13,8 @@
   },
   "keywords": [
     "ghost-theme",
-    "terminal",
-    "tokyo-night"
+    "nightwire",
+    "cyberpunk"
   ],
   "config": {
     "posts_per_page": 10,
