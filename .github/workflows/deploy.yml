@@ -74,17 +74,17 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          envs: DB_PASSWORD
+          envs: DB_PASSWORD,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASS
           script: |
             cd /home/cativo23/deploy/ghost-blog-deploy
 
             # Create .env file with secrets
             cat > .env << EOF
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            SMTP_HOST=
-            SMTP_PORT=
-            SMTP_USER=
-            SMTP_PASS=
+            SMTP_HOST=${{ secrets.SMTP_HOST }}
+            SMTP_PORT=${{ secrets.SMTP_PORT }}
+            SMTP_USER=${{ secrets.SMTP_USER }}
+            SMTP_PASS=${{ secrets.SMTP_PASS }}
             EOF
 
             # Unzip theme
@@ -102,3 +102,7 @@ jobs:
             echo "Theme deployed to production"
         env:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
